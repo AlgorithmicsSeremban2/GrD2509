@@ -1,0 +1,422 @@
+:root {
+    /* ====================================================================== */
+    /* 1. Color Palette: BOLD, EARTHY & IDEAL (Shrek Vibe) */
+    /* ====================================================================== */
+    --color-primary-green: #38761D; /* Deep Forest Green (Primary Background/Earth) */
+    --color-secondary-gold: #FFC000; /* Bold Gold/Yellow (Accent/Ideal) */
+    --color-text-dark: #1C2833; /* Near Black (Strong Contrast) */
+    --color-text-subtle: #4A4A4A; /* Dark Gray text */
+    --color-accent-brown: #997300; /* Deep Gold/Brown (Primary CTA/Shrek skin) */
+    --color-white: #FFFFFF;
+    --color-shadow: rgba(0, 0, 0, 0.3); /* Stronger shadow for "boldness" */
+
+    /* ====================================================================== */
+    /* 2. UI Elements (Card/Glass/Elevation) */
+    /* ====================================================================== */
+    --ui-card-bg: var(--color-white);
+    --ui-card-bg-hover: #F8F4E5; /* Light Beige/Ideal hover */
+    --ui-card-border: #99A98F; /* Earthy light border */
+
+    /* ====================================================================== */
+    /* 3. Global Spacing */
+    /* ====================================================================== */
+    --spacing-page-padding-x: 6%; /* Horizontal padding */
+    --spacing-section-padding: 5rem var(--spacing-page-padding-x);
+}
+
+/* ---------------------------------------------------------------------- */
+/* 1. Global Reset & Base Styles */
+/* ---------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    transition-property: all;
+    transition-duration: 0.3s; /* Smooth global transition */
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    /* Updated Font */
+    font-family: 'Poppins', sans-serif; 
+    line-height: 1.6; /* Slightly tighter line-height for boldness */
+    color: var(--color-text-dark);
+
+    /* Background: Deep Forest Green */
+    background-color: var(--color-primary-green);
+    background-attachment: fixed;
+
+    text-shadow: none; 
+}
+
+section {
+    padding: var(--spacing-section-padding);
+}
+
+ul,
+ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* ---------------------------------------------------------------------- */
+/* 2. Professional Typography (Now Bolder) */
+/* ---------------------------------------------------------------------- */
+
+h1,
+h2,
+h3 {
+    /* Elegant Heading Font (Playfair Display) is kept but colors/emphasis changed */
+    font-family: 'Playfair Display', serif; 
+    letter-spacing: 0.08em; /* Increased spacing for boldness */
+    text-align: center;
+    color: var(--color-text-dark);
+    text-shadow: none;
+}
+
+h2 {
+    font-size: 3.2rem; /* Larger font size */
+    font-weight: 900; /* Extra bold */
+    margin: 0 0 2.5rem;
+    transform: none;
+    color: var(--color-secondary-gold); /* Gold Heading */
+    /* Added subtle dark shadow for contrast against background */
+    text-shadow: 2px 2px 0px var(--color-text-dark); 
+}
+
+/* ---------------------------------------------------------------------- */
+/* 3. Header & Logo */
+/* ---------------------------------------------------------------------- */
+
+header {
+    padding: 1rem var(--spacing-page-padding-x);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Background contrast for the sticky header */
+    background-color: var(--color-primary-green);
+    box-shadow: 0 4px 8px var(--color-shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+a.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; /* Larger logo */
+    font-weight: 700;
+    color: var(--color-secondary-gold); /* Gold logo */
+    text-decoration: none;
+    text-shadow: 1px 1px 1px var(--color-text-dark);
+}
+
+/* ---------------------------------------------------------------------- */
+/* 4. Hero Section & Main Headings */
+/* ---------------------------------------------------------------------- */
+
+.hero {
+    min-height: 85vh; /* Slightly taller hero */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--color-white); /* White text on dark green background */
+}
+
+.hero h1 {
+    font-size: 5rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin: 0 0 0.5rem;
+    color: var(--color-white);
+    text-shadow: 3px 3px 0px var(--color-text-dark); /* Bold, impactful shadow */
+}
+
+.hero p.tagline {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.3rem; /* Larger tagline */
+    font-weight: 500;
+    max-width: 800px;
+    line-height: 1.6;
+    color: var(--color-secondary-gold); /* Gold tagline */
+    margin-bottom: 3rem;
+    text-shadow: 1px 1px 1px var(--color-text-dark);
+}
+
+/* ---------------------------------------------------------------------- */
+/* 5. Interactive Profile Pictures (Main & Badge) */
+/* ---------------------------------------------------------------------- */
+
+.profile-container {
+    position: relative;
+    width: 200px; /* Slightly larger image */
+    height: 200px;
+    margin-bottom: 3rem;
+    cursor: pointer;
+}
+
+.profile-pic {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 7px solid var(--color-secondary-gold); /* Gold border */
+    box-shadow: 0 10px 20px var(--color-shadow); /* Stronger shadow */
+    transition: transform 0.4s ease-out, box-shadow 0.4s;
+}
+
+.profile-pic:hover {
+    transform: rotate(3deg) scale(1.05); /* More dynamic hover effect */
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+}
+
+.profile-badge {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    border-radius: 50%;
+    padding: 3px;
+    background: var(--color-accent-brown); /* Brown badge background */
+    border: 3px solid var(--color-white); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    transform: none;
+}
+
+/* ---------------------------------------------------------------------- */
+/* 6. Card Components (Gallery & Tools) - Clean and Elevated Look */
+/* ---------------------------------------------------------------------- */
+
+.creation-card,
+.tool-card {
+    background: var(--ui-card-bg);
+    border: 2px solid var(--ui-card-border); /* Slightly thicker border */
+    border-radius: 12px; /* Slightly rounder corners */
+    overflow: hidden;
+    box-shadow: 0 6px 15px var(--color-shadow);
+    transition: transform 0.3s ease-out, box-shadow 0.3s, background-color 0.3s;
+}
+
+.creation-card:hover,
+.tool-card:hover {
+    transform: translateY(-8px) scale(1.02); /* More lift */
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+    background-color: var(--ui-card-bg-hover);
+}
+
+.creation-card h3,
+.tool-card h3 {
+    padding: 1rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.3rem; /* Bolder card title */
+    font-weight: 700;
+    text-align: center;
+    margin: 0;
+    color: var(--color-accent-brown); /* Brown accent color */
+}
+
+/* ---------------------------------------------------------------------- */
+/* 7. Gallery Grid (Creations) */
+/* ---------------------------------------------------------------------- */
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Wider minimum card size */
+    gap: 2rem; /* Larger gap */
+}
+
+.creation-card img {
+    width: 100%;
+    height: 250px; /* Taller image */
+    object-fit: cover;
+    display: block;
+}
+
+/* ---------------------------------------------------------------------- */
+/* 8. Tools List */
+/* ---------------------------------------------------------------------- */
+/* The tools section remains mostly functional, adjusting to new color palette */
+
+.tools-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    justify-items: center;
+    padding: 0 var(--spacing-page-padding-x);
+}
+
+.tool-card img {
+    width: 50%; 
+    height: 100px;
+    object-fit: contain;
+    display: block;
+    margin: 1.5rem auto 0; /* More margin */
+}
+
+.tool-card p {
+    padding: 1rem;
+    text-align: center;
+    font-size: 1rem; /* Slightly larger text */
+    color: var(--color-text-subtle);
+    line-height: 1.6;
+    background: var(--ui-card-bg);
+    border-top: 1px solid var(--ui-card-border);
+}
+
+/* ---------------------------------------------------------------------- */
+/* 9. Favorites List & Interactive Elements (Button) */
+/* ---------------------------------------------------------------------- */
+
+.favorites-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.2rem; /* Slightly increased gap */
+}
+
+.favorite-item {
+    background: var(--color-secondary-gold); /* Gold tag background */
+    color: var(--color-text-dark); /* Dark text on gold */
+    text-shadow: none;
+    padding: 0.9rem 1.8rem; /* Larger padding */
+    border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: none;
+    transition: transform 0.2s ease-out, box-shadow 0.2s;
+}
+
+.favorite-item:hover {
+    transform: translateY(-3px) scale(1.05); /* Stronger hover effect */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* Call to Action Button Container */
+.time-capsule-link {
+    text-align: center;
+    margin: 4rem 0; /* More margin */
+    padding: 0 var(--spacing-page-padding-x);
+    /* Flexbox for button layout on desktop */
+    display: flex;
+    flex-direction: column; /* Stack by default on mobile */
+    align-items: center;
+    gap: 2rem; /* Increased spacing between buttons */
+}
+
+/* Primary Button Style (fun-button) - Brown/Gold */
+.fun-button {
+    display: inline-block;
+    padding: 1.2rem 3.5rem; /* Bolder padding */
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    background: var(--color-accent-brown);
+    color: var(--color-white);
+    text-shadow: 1px 1px 2px var(--color-text-dark);
+    border-radius: 8px; /* Slightly less rounded */
+    border: 3px solid var(--color-secondary-gold); /* Gold border */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transition:
+        transform 0.2s ease-out,
+        box-shadow 0.2s ease-out,
+        background-color 0.2s;
+}
+
+.fun-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #795700; /* Darker brown on hover */
+}
+
+/* Secondary Button Style (fun-button secondary) - Gold/Yellow */
+.fun-button.secondary {
+    background: var(--color-secondary-gold);
+    color: var(--color-text-dark);
+    text-shadow: none;
+    border-color: var(--color-accent-brown);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.fun-button.secondary:hover {
+    background-color: #E6B000; /* Darker gold on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ---------------------------------------------------------------------- */
+/* 10. Footer */
+/* ---------------------------------------------------------------------- */
+
+footer {
+    padding: 2.5rem 5%;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--color-secondary-gold); /* Gold text on dark footer */
+    background-color: var(--color-text-dark); /* Dark Footer */
+    border-top: 5px solid var(--color-accent-brown); /* Stronger border */
+}
+
+/* ---------------------------------------------------------------------- */
+/* 11. Responsive Tweaks (Media Queries) */
+/* ---------------------------------------------------------------------- */
+
+@media (min-width: 600px) {
+    /* Side-by-side buttons on larger screens */
+    .time-capsule-link {
+        flex-direction: row; 
+        justify-content: center;
+    }
+}
+
+@media (max-width: 1024px) {
+    /* Tools list changes from 3 to 2 columns */
+    .tools-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 4rem;
+    }
+
+    .hero p.tagline {
+        font-size: 1.2rem;
+    }
+
+    h2 {
+        font-size: 2.5rem;
+    }
+
+    /* Tools list changes from 2 to 1 column */
+    .tools-list {
+        grid-template-columns: 1fr;
+        padding: 0;
+    }
+
+    .tool-card h3 {
+        font-size: 1.3rem;
+    }
+    
+    .fun-button, .fun-button.secondary {
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+        width: 100%; /* Full width for mobile buttons */
+        max-width: 350px;
+    }
+}

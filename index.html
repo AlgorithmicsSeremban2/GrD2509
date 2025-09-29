@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Congratulations, Class of 2025!</title>
+    <link rel="stylesheet" href="./src/styles.css">
+</head>
+
+<body>
+
+    <!-- HERO -->
+    <section style="height: 100dvh;">
+        <section class="hero">
+            <canvas id="confetti"></canvas>
+            <h1>Congratulations</h1>
+            <h2>Graphic Design Graduates September 2025</h2>
+        </section>
+
+        <div class="transition-message">
+            <h3>The future is yours.</h3>
+            <hr>
+        </div>
+    </section>
+
+    <!-- STUDENT CATALOGUE (auto-injected) -->
+    <main id="students-catalogue"></main>
+
+
+    <section class="quote-transition">
+        <blockquote>
+            "Behind every great designer is a dedicated teacher."
+        </blockquote>
+    </section>
+
+    <!-- TEACHER CARDS -->
+    <section class="teachers">
+        <div class="card" tabindex="0">
+            <div class="card__inner">
+                <div class="card__front" style="background:url('assets/Teacher1.jpg') center/cover">
+                    <span class="name">Mrs. Shereen</span>
+                </div>
+                <div class="card__back">
+                    <q>You made us proud every single day.</q>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" tabindex="0">
+            <div class="card__inner">
+                <div class="card__front" style="background:url('assets/Teacher2.jpg') center/cover">
+                    <span class="name">Teacher Shazwan</span>
+                </div>
+                <div class="card__back">
+                    <q>Keep curiosity alive—never stop asking why.</q>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" tabindex="0">
+            <div class="card__inner">
+                <div class="card__front" style="background:url('assets/Teacher3.jpg') center/cover">
+                    <span class="name">Ms. Shin Huei</span>
+                </div>
+                <div class="card__back">
+                    <q>The world needs your kindness—go spread it.</q>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- SCRIPTS -->
+    <script src="./src/confetti.js"></script>
+    <script src="./src/load-students.js"></script>
+
+    <!-- DESKTOP SPOTLIGHT FOLLOW -->
+    <script>
+        if (matchMedia('(min-width: 1024px)').matches) {
+            document.querySelectorAll('.card').forEach(card => {
+                card.addEventListener('mousemove', e => {
+                    const r = card.getBoundingClientRect();
+                    card.style.setProperty('--x', `${e.clientX - r.left}px`);
+                    card.style.setProperty('--y', `${e.clientY - r.top}px`);
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,357 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Kalam:wght@700&display=swap');
+
+/* ---------- design tokens ---------- */
+:root {
+  --lavender: #CEAFEF;
+  --white: #FFFFFF;
+  --black: #000000;
+  --mint: #00FFA3;
+  --coral: #F14136;
+  --lemon: #FEFCB6;
+
+  --grad-start: #F5F0FF;
+  --grad-end: #E6D7FF;
+  --text-main: #1A1A1A;
+  
+  --radius: 50%;
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, .08);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, .12);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, .18);
+  --transition: .35s cubic-bezier(.4, 0, .2, 1);
+}
+
+/* ---------- dark-mode over-ride ---------- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --white: #121212;
+    --black: #F5F5F5;
+    --grad-start: #1e1a2e;
+    --grad-end: #2c2442;
+    --text-main: #EAEAEA;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, .35);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, .45);
+    --shadow-lg: 0 12px 32px rgba(0, 0, 0, .55);
+  }
+}
+
+/* ---------- reset & base styles ---------- */
+*, *::before, *::after { box-sizing: border-box }
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: var(--white);
+  color: var(--text-main);
+  line-height: 1.5;
+  scroll-behavior: smooth;
+  /* FIX: Enable vertical scroll snapping on the main viewport */
+  scroll-snap-type: y mandatory; 
+}
+img, video, iframe { max-width: 100%; display: block }
+a { text-decoration: none; color: inherit }
+
+/* ---------- hero section ---------- */
+.hero {
+  padding: clamp(48px, 10vh, 96px) 16px;
+  text-align: center;
+  background: linear-gradient(135deg, var(--grad-start), var(--grad-end));
+  position: relative;
+  overflow: hidden;
+  /* >> ADDED FOR SCROLL SNAP */
+  scroll-snap-align: start;
+}
+#confetti {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+.hero h1 {
+  font-family: 'Kalam', cursive;
+  font-size: clamp(2.2rem, 6vw, 4.5rem);
+  font-weight: 700;
+  margin: 0 auto;
+  max-width: 900px;
+  animation: fadeSlide .8s .2s both cubic-bezier(.4, 0, .2, 1);
+  position: relative;
+  z-index: 20;
+}
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateY(20px) }
+  to { opacity: 1; transform: translateY(0) }
+}
+
+/* -------------------------------------------------
+   >> HERO TO TEACHER TRANSITION
+-------------------------------------------------- */
+.quote-transition {
+  max-width: 700px;
+  margin: 4rem auto 3rem; /* Spacing */
+  text-align: center;
+  padding: 0 1rem;
+  /* >> ADDED FOR SCROLL SNAP */
+  scroll-snap-align: start;
+}
+
+.quote-transition blockquote {
+  font-family: 'Georgia', serif; /* Use a serif font for a classic, thoughtful feel */
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--text-main); /* Using text variable */
+  line-height: 1.5;
+  border-left: none;
+  padding: 0;
+  margin: 0;
+}
+
+
+/* ---------- teacher cards ---------- */
+.teachers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 48px 16px 64px;
+  background: var(--white);
+  /* >> ADDED FOR SCROLL SNAP */
+  scroll-snap-align: start;
+}
+.card {
+  width: 260px;
+  height: 260px;
+  position: relative;
+  cursor: pointer;
+  border-radius: 24px;
+  overflow: hidden;
+  transform: translateZ(0);
+  transition: transform .45s cubic-bezier(.16, 1, .3, 1), box-shadow .45s cubic-bezier(.16, 1, .3, 1);
+  box-shadow: var(--shadow-sm);
+  outline: none;
+}
+.card:hover, .card:focus-within {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-lg);
+}
+.card__inner { position: absolute; inset: 0 }
+.card__front, .card__back { position: absolute; inset: 0 }
+
+.card__front {
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+}
+.card__front .name {
+  background: rgba(241, 65, 54, .55);
+  backdrop-filter: blur(12px);
+  color: var(--white);
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 17px;
+  z-index: 2;
+  transition: opacity .35s, transform .35s;
+}
+.card__back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, .65);
+  backdrop-filter: blur(20px);
+  opacity: 0;
+  transition: opacity .5s cubic-bezier(.19, 1, .22, 1);
+}
+.card__back q {
+  font-size: 18px;
+  font-weight: 500;
+  color: white;
+  max-width: 85%;
+  line-height: 1.4;
+  quotes: "“" "”";
+}
+.card:hover .card__back,
+.card:focus-within .card__back {
+  opacity: 1;
+}
+.card:hover .card__front .name,
+.card:focus-within .card__front .name {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* Desktop cards */
+@media (min-width: 768px) {
+  .teachers { flex-direction: row; justify-content: center; gap: 56px }
+  .card { width: 405px; height: 405px }
+}
+@media (min-width: 1024px) {
+  .card__inner::before {
+    content: "";
+    position: absolute;
+    inset: -20px;
+    background: radial-gradient(140px at var(--x, 50%) var(--y, 50%), rgba(255,255,255,.22), transparent 70%);
+    opacity: 0;
+    transition: opacity .5s;
+    pointer-events: none;
+    z-index: 15;
+    border-radius: 24px;
+  }
+  .card:hover .card__inner::before { opacity: 1 }
+}
+
+/* -------------------------------------------------
+   >> TEACHER TO STUDENT TRANSITION
+-------------------------------------------------- */
+.transition-message {
+  max-width: 800px;
+  margin: 6rem auto 4rem;
+  text-align: center;
+  padding: 0 1rem;
+  /* >> ADDED FOR SCROLL SNAP */
+  scroll-snap-align: start;
+}
+
+.transition-message h3 {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 200;
+  color: var(--text-main); /* Using text variable */
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.transition-message h4 {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 300;
+  color: #555; /* Retaining #555 for lighter look */
+  margin-bottom: 2rem;
+}
+
+.transition-message hr {
+  width: 50px;
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 0 auto;
+}
+
+
+/* ---------- student catalogue section ---------- */
+#students-catalogue {
+  padding: 64px 0;
+  background: var(--white);
+  /* >> ADDED FOR SCROLL SNAP */
+  scroll-snap-align: start;
+}
+.student-row {
+  margin: 0 auto;
+  max-width: 1188px;
+  padding: 0 16px 48px;
+}
+/* This is already set up for horizontal snapping */
+.reel {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: 580px;
+  padding-bottom: 12px;
+  /* Correctly set for horizontal snapping */
+  scroll-snap-type: x mandatory; 
+}
+.reel::-webkit-scrollbar { height: 6px }
+.reel::-webkit-scrollbar-thumb {
+  background: var(--lavender);
+  border-radius: 3px;
+}
+.reel iframe {
+  flex: none;
+  width: 315px;
+  height: 560px;
+  border: none;
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+  /* Correctly set for aligning children of the reel */
+  scroll-snap-align: start; 
+  background: var(--lemon);
+}
+@media (min-width: 768px) {
+  .student-row { padding: 0 0 56px }
+  .reel { gap: 24px }
+  .reel iframe {
+    width: 320px;
+    height: 560px;
+  }
+}
+
+/* ---------- updated student header (latest: gradient + coral) ---------- */
+.student-header {
+  background: linear-gradient(135deg, var(--grad-start), var(--grad-end));
+  box-shadow: 0 0 0 2px var(--coral), 0 0 10px var(--coral);
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+  padding: 12px 20px;
+  width: 100%;
+  border-radius: 12px;
+  transition: all .3s ease-out;
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+.student-header:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4), 0 0 0 3px var(--coral), 0 0 15px var(--coral);
+}
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius);
+  object-fit: cover;
+  outline: 2px solid var(--coral);
+  outline-offset: -2px;
+  box-shadow: none;
+  flex: none;
+}
+
+/* ---------- student name and label (updated + more obvious) ---------- */
+.student-name {
+  color: var(--text-main);
+  font-weight: 700;
+  font-size: 20px;
+  margin: 0;
+  line-height: 1.2;
+}
+.student-label {
+  margin-left: auto;
+  color: var(--lavender);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: opacity .25s;
+}
+.student-label:hover {
+  opacity: 0.75;
+}
+
+/* ---------- accessibility utility ---------- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

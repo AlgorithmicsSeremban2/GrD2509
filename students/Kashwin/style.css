@@ -1,0 +1,380 @@
+:root {
+    /* ====================================================================== */
+    /* 1. Color Palette: Bold, Dino-Era Colors */
+    /* ====================================================================== */
+    --color-primary-yellow: #FFFF00; /* Main Page Background */
+    --color-secondary-green: #4CAF50; /* T-Rex Green / Accent */
+    --color-text-dark: #000000; /* Main text color */
+    --color-text-mud: #8B4513; /* Earthy Brown/Shadow */
+    --color-accent-red: #FF4500; /* Volcanic Red Accent */
+
+    /* ====================================================================== */
+    /* 2. UI Elements (Card/Dino Egg Look) */
+    /* ====================================================================== */
+    --ui-card-bg: rgba(76, 175, 80, 0.8); /* Semi-transparent Green Card */
+    --ui-card-bg-light: #6BBF6E;
+    --ui-card-border: #000000;
+    --ui-shadow-color: rgba(0, 0, 0, 0.5); /* Universal shadow for depth */
+
+    /* ====================================================================== */
+    /* 3. Global Spacing */
+    /* ====================================================================== */
+    --spacing-page-padding-x: 8%; /* Horizontal padding */
+    --spacing-section-padding: 4rem var(--spacing-page-padding-x);
+}
+
+/* ---------------------------------------------------------------------- */
+/* 1. Global Reset & Base Styles */
+/* ---------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    transition-property: all;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    /* Updated Font */
+    font-family: 'Jockey One', 'Helvetica Neue', Arial, sans-serif; 
+    line-height: 1.6;
+    color: var(--color-text-dark);
+
+    /* Background: Solid Yellow */
+    background-color: var(--color-primary-yellow);
+    background-attachment: fixed;
+
+    /* Text Effect: Simple shadow for visibility on yellow */
+    text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.5);
+}
+
+section {
+    padding: var(--spacing-section-padding);
+}
+
+ul,
+ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* ---------------------------------------------------------------------- */
+/* 2. Dinosaur Typography */
+/* ---------------------------------------------------------------------- */
+
+h1,
+h2,
+h3 {
+    font-family: 'Jockey One', cursive;
+    letter-spacing: 0.1em;
+    text-align: center;
+    /* Shadow is brown/muddy */
+    text-shadow: 4px 4px 0px var(--color-text-mud);
+}
+
+h2 {
+    font-size: 3.5rem;
+    margin: 0 0 2.5rem;
+    transform: rotate(2deg);
+}
+
+/* ---------------------------------------------------------------------- */
+/* 3. Header & Logo */
+/* ---------------------------------------------------------------------- */
+
+header {
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+a.logo {
+    font-family: 'Jockey One', cursive;
+    font-size: 2.5rem;
+    color: var(--color-accent-red);
+    text-decoration: none;
+    text-shadow: 4px 4px 0px var(--color-text-mud);
+}
+
+/* ---------------------------------------------------------------------- */
+/* 4. Hero Section & Main Headings */
+/* ---------------------------------------------------------------------- */
+
+.hero {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+.hero h1 {
+    font-size: 6rem;
+    line-height: 1.0;
+    margin: 0 0 1rem;
+    transform: rotate(-3deg);
+    color: var(--color-secondary-green);
+    /* Grouped effects: Thicker stroke, Red accent shadow */
+    -webkit-text-stroke: 4px var(--color-text-mud);
+    text-shadow: 8px 8px 0px var(--color-accent-red);
+}
+
+.hero p.tagline {
+    font-family: 'Jockey One', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    max-width: 700px;
+    line-height: 1.2;
+}
+
+/* ---------------------------------------------------------------------- */
+/* 5. Interactive Profile Pictures (Main & Badge) */
+/* ---------------------------------------------------------------------- */
+
+.profile-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 2rem;
+    transform: rotate(-2deg);
+    cursor: pointer;
+}
+
+/* Styles for the Primary Image (Profile Pic) */
+.profile-pic {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+
+    /* Dino Vibe: Red Border, Mud Shadow */
+    border: 5px solid var(--color-accent-red);
+    box-shadow: 8px 8px 0px var(--color-text-mud);
+    transition: transform 0.3s ease-out, box-shadow 0.3s;
+}
+
+.profile-pic:hover {
+    transform: scale(1.05);
+}
+
+/* Styles for the Secondary Image (Logo Badge) */
+.profile-badge {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 50%;
+    padding: 5px;
+
+    /* Yellow background, Black border */
+    background: var(--color-primary-yellow);
+    border: 3px solid var(--color-text-dark);
+    box-shadow: 0 4px 8px var(--ui-shadow-color);
+    transform: rotate(10deg);
+    transition: transform 0.3s ease-out, background 0.3s;
+}
+
+/* ---------------------------------------------------------------------- */
+/* 6. Card Components (Gallery & Tools) - Dino Egg/Stone Look */
+/* ---------------------------------------------------------------------- */
+
+.creation-card,
+.tool-card {
+    /* Dino Egg/Stone Look */
+    background: var(--ui-card-bg);
+    border: 5px dashed var(--ui-card-border);
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 8px 8px 0px var(--color-text-mud);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.creation-card:hover,
+.tool-card:hover {
+    /* Bouncier, more aggressive effect */
+    transform: translateY(-10px) rotate(4deg) scale(1.05);
+    box-shadow: 12px 12px 0px var(--color-text-mud);
+}
+
+.creation-card h3,
+.tool-card h3 {
+    padding: 1rem;
+    font-family: 'Jockey One', cursive;
+    font-size: 1.8rem;
+    text-align: center;
+    margin: 0;
+    color: var(--color-accent-red);
+}
+
+/* ---------------------------------------------------------------------- */
+/* 7. Gallery Grid (Creations) */
+/* ---------------------------------------------------------------------- */
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+}
+
+.creation-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
+
+/* ---------------------------------------------------------------------- */
+/* 8. Tools List */
+/* ---------------------------------------------------------------------- */
+
+.tools-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+    justify-items: center;
+    /* Used horizontal padding variable */
+    padding: 0 calc(var(--spacing-page-padding-x) * 1.5);
+}
+
+.tool-card img {
+    width: 70%;
+    height: 140px;
+    object-fit: contain;
+    display: block;
+    margin: 1rem auto 0;
+}
+
+.tool-card p {
+    padding: 1rem;
+    text-align: center;
+    font-size: 1rem;
+    color: var(--color-text-dark);
+    line-height: 1.5;
+    background: var(--ui-card-bg-light);
+    border-top: 5px dashed var(--ui-card-border);
+}
+
+/* ---------------------------------------------------------------------- */
+/* 9. Favorites List & Interactive Elements (Button) */
+/* ---------------------------------------------------------------------- */
+
+.favorites-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.favorite-item {
+    background: var(--color-accent-red);
+    color: var(--color-text-dark);
+    text-shadow: none;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    font-family: 'Jockey One', cursive;
+    font-size: 1.4rem;
+    box-shadow: inset 0 -6px 0 var(--color-text-mud);
+    border: 2px solid var(--color-text-dark);
+    transition: transform 0.2s ease-out;
+}
+
+.favorite-item:hover {
+    transform: scale(1.15) rotate(5deg);
+}
+
+/* Time Capsule Button Link */
+.time-capsule-link {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 0 var(--spacing-page-padding-x);
+}
+
+.fun-button {
+    /* Layout and Base Style */
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 400;
+    font-family: 'Jockey One', sans-serif;
+
+    /* Color and Shape */
+    background: var(--color-accent-red);
+    color: var(--color-text-dark);
+    text-shadow: 2px 2px 0px var(--color-text-mud);
+    border-radius: 10px;
+    border: 5px solid var(--color-text-mud);
+
+    /* Animation and Shadow (3D block effect) */
+    box-shadow: 8px 8px 0px var(--color-text-mud);
+    transition:
+        transform 0.2s ease-out,
+        box-shadow 0.2s ease-out;
+}
+
+.fun-button:hover {
+    /* Dino Stomp / Press effect */
+    transform: translate(4px, 4px);
+    box-shadow: 4px 4px 0px var(--color-text-mud);
+}
+
+/* ---------------------------------------------------------------------- */
+/* 10. Footer */
+/* ---------------------------------------------------------------------- */
+
+footer {
+    padding: 3rem 5%;
+    text-align: center;
+    font-family: 'Jockey One', sans-serif;
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: var(--color-text-mud);
+    /* Remove global text-shadow for a cleaner footer */
+    text-shadow: none; 
+}
+
+/* ---------------------------------------------------------------------- */
+/* 11. Responsive Tweaks (Media Queries) */
+/* ---------------------------------------------------------------------- */
+
+@media (max-width: 1024px) {
+    .tools-list {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 5%;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 4rem;
+        -webkit-text-stroke-width: 2px;
+    }
+
+    .hero p.tagline {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 2.8rem;
+    }
+
+    .tools-list {
+        grid-template-columns: 1fr;
+        padding: 0;
+    }
+
+    .tool-card h3 {
+        font-size: 1.6rem;
+    }
+}

@@ -1,0 +1,415 @@
+:root {
+    /* ====================================================================== */
+    /* 1. Color Palette: ROYAL CHAOS, MEME LORD (Purple & Proper) */
+    /* ====================================================================== */
+    --color-primary-purple: #CEAFEF; /* Light/Pale Lilac (Primary Background) */
+    --color-secondary-gold: #FFD700; /* Bold Gold/Yellow (Accent/Royal) */
+    --color-text-dark: #3A0150; /* Deep Royal Purple (Professional Text) */
+    --color-text-subtle: #6C4082; /* Muted Purple Text */
+    --color-accent-blue: #007BFF; /* Standard CTA Blue (kept for contrast) */
+    --color-white: #FFFFFF;
+    --color-shadow: rgba(0, 0, 0, 0.2); /* Medium shadow for definition */
+
+    /* ====================================================================== */
+    /* 2. UI Elements (Card/Glass/Elevation) */
+    /* ====================================================================== */
+    --ui-card-bg: var(--color-white);
+    --ui-card-bg-hover: #E8D3FF; /* Lighter purple hover */
+    --ui-card-border: #9D7BC4; /* Medium purple border */
+
+    /* ====================================================================== */
+    /* 3. Global Spacing */
+    /* ====================================================================== */
+    --spacing-page-padding-x: 6%; /* Horizontal padding */
+    --spacing-section-padding: 5rem var(--spacing-page-padding-x);
+}
+
+/* ---------------------------------------------------------------------- */
+/* 1. Global Reset & Base Styles */
+/* ---------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    /* Reduced transition duration for a 'snappier', organized feel */
+    transition-property: all;
+    transition-duration: 0.2s; 
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    /* Updated Font - Keeping Poppins/Playfair for proper structure */
+    font-family: 'Poppins', sans-serif; 
+    line-height: 1.6; /* Standard line-height */
+    color: var(--color-text-dark);
+
+    /* Background: Light Lilac */
+    background-color: var(--color-primary-purple);
+    background-attachment: fixed;
+    text-shadow: none; 
+}
+
+section {
+    padding: var(--spacing-section-padding);
+}
+
+ul,
+ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* ---------------------------------------------------------------------- */
+/* 2. Professional Typography (Royal Purple) */
+/* ---------------------------------------------------------------------- */
+
+h1,
+h2,
+h3 {
+    font-family: 'Playfair Display', serif; 
+    letter-spacing: 0.03em; /* Slightly tighter, professional spacing */
+    text-align: center;
+    color: var(--color-text-dark);
+    text-shadow: none;
+}
+
+h2 {
+    font-size: 3rem; 
+    font-weight: 800; 
+    margin: 0 0 2.5rem;
+    color: var(--color-text-dark); 
+    /* Subtle Gold Outline for Royalty */
+    text-shadow: 1px 1px 0px var(--color-secondary-gold), -1px -1px 0px var(--color-secondary-gold);
+}
+
+/* ---------------------------------------------------------------------- */
+/* 3. Header & Logo */
+/* ---------------------------------------------------------------------- */
+
+header {
+    padding: 1rem var(--spacing-page-padding-x);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-text-dark); /* Deep purple background */
+    box-shadow: 0 4px 8px var(--color-shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+a.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-secondary-gold); /* Gold logo */
+    text-decoration: none;
+    text-shadow: none;
+}
+
+/* ---------------------------------------------------------------------- */
+/* 4. Hero Section & Main Headings */
+/* ---------------------------------------------------------------------- */
+
+.hero {
+    min-height: 80vh; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--color-text-dark); 
+}
+
+.hero h1 {
+    font-size: 4.8rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin: 0 0 0.5rem;
+    color: var(--color-text-dark);
+    /* Clean, defined heading */
+    text-shadow: 2px 2px 0px var(--color-secondary-gold); 
+}
+
+.hero p.tagline {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.25rem; 
+    font-weight: 500;
+    max-width: 800px;
+    line-height: 1.5;
+    color: var(--color-text-subtle); 
+    margin-bottom: 3rem;
+    text-shadow: none;
+}
+
+/* ---------------------------------------------------------------------- */
+/* 5. Interactive Profile Pictures (Main & Badge) */
+/* ---------------------------------------------------------------------- */
+
+.profile-container {
+    position: relative;
+    width: 200px; 
+    height: 200px;
+    margin-bottom: 3rem;
+    cursor: pointer;
+}
+
+.profile-pic {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    /* Royal Purple/Gold border */
+    border: 7px solid var(--color-secondary-gold); 
+    box-shadow: 0 8px 15px var(--color-shadow); 
+    transition: transform 0.3s ease-out, box-shadow 0.3s;
+}
+
+.profile-pic:hover {
+    /* Subtle, controlled movement for 'Proper' feel */
+    transform: scale(1.03); 
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+.profile-badge {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    border-radius: 50%;
+    padding: 3px;
+    background: var(--color-text-dark); /* Deep purple badge */
+    border: 3px solid var(--color-white); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* ---------------------------------------------------------------------- */
+/* 6. Card Components (Gallery & Tools) - Organized and Proper Look */
+/* ---------------------------------------------------------------------- */
+
+.creation-card,
+.tool-card {
+    background: var(--ui-card-bg);
+    border: 1px solid var(--ui-card-border); 
+    border-radius: 8px; /* Slightly squarer for 'proper' feel */
+    overflow: hidden;
+    box-shadow: 0 4px 10px var(--color-shadow);
+    transition: transform 0.2s ease-out, box-shadow 0.2s, background-color 0.2s;
+}
+
+.creation-card:hover,
+.tool-card:hover {
+    transform: translateY(-4px); /* Controlled lift */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+    background-color: var(--ui-card-bg-hover);
+}
+
+.creation-card h3,
+.tool-card h3 {
+    padding: 1rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem; 
+    font-weight: 600;
+    text-align: center;
+    margin: 0;
+    color: var(--color-text-dark); /* Deep purple titles */
+}
+
+/* ---------------------------------------------------------------------- */
+/* 7. Gallery Grid (Creations) */
+/* ---------------------------------------------------------------------- */
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 1.5rem; 
+}
+
+.creation-card img {
+    width: 100%;
+    height: 220px; 
+    object-fit: cover;
+    display: block;
+}
+
+/* ---------------------------------------------------------------------- */
+/* 8. Tools List */
+/* ---------------------------------------------------------------------- */
+
+.tools-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    justify-items: center;
+    padding: 0 var(--spacing-page-padding-x);
+}
+
+.tool-card img {
+    width: 50%; 
+    height: 100px;
+    object-fit: contain;
+    display: block;
+    margin: 1rem auto 0;
+}
+
+.tool-card p {
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.95rem; 
+    color: var(--color-text-subtle);
+    line-height: 1.5;
+    background: var(--ui-card-bg);
+    border-top: 1px solid var(--ui-card-border);
+}
+
+/* ---------------------------------------------------------------------- */
+/* 9. Favorites List & Interactive Elements (Button) */
+/* ---------------------------------------------------------------------- */
+
+.favorites-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.favorite-item {
+    background: var(--color-secondary-gold); /* Gold tag background */
+    color: var(--color-text-dark); /* Deep purple text on gold */
+    text-shadow: none;
+    padding: 0.8rem 1.5rem; 
+    border-radius: 5px; /* Squarer tags for organization */
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    border: none;
+    transition: transform 0.2s ease-out, box-shadow 0.2s;
+}
+
+.favorite-item:hover {
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Call to Action Button Container */
+.time-capsule-link {
+    text-align: center;
+    margin: 3rem 0;
+    padding: 0 var(--spacing-page-padding-x);
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    gap: 1.5rem; 
+}
+
+/* Primary Button Style (fun-button) - Deep Purple */
+.fun-button {
+    display: inline-block;
+    padding: 1rem 3rem;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    background: var(--color-text-dark);
+    color: var(--color-white);
+    text-shadow: none;
+    border-radius: 5px; 
+    border: 3px solid var(--color-secondary-gold); /* Gold Border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition:
+        transform 0.2s ease-out,
+        box-shadow 0.2s ease-out,
+        background-color 0.2s;
+}
+
+.fun-button:hover {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: var(--color-text-subtle);
+}
+
+/* Secondary Button Style (fun-button secondary) - Gold/Yellow */
+.fun-button.secondary {
+    background: var(--color-secondary-gold);
+    color: var(--color-text-dark);
+    border-color: var(--color-text-dark);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.fun-button.secondary:hover {
+    background-color: #EBC500; /* Darker gold on hover */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* ---------------------------------------------------------------------- */
+/* 10. Footer */
+/* ---------------------------------------------------------------------- */
+
+footer {
+    padding: 2rem 5%;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--color-secondary-gold);
+    background-color: var(--color-text-dark);
+    border-top: 1px solid var(--ui-card-border);
+}
+
+/* ---------------------------------------------------------------------- */
+/* 11. Responsive Tweaks (Media Queries) - Keeping previous structure */
+/* ---------------------------------------------------------------------- */
+
+@media (min-width: 600px) {
+    .time-capsule-link {
+        flex-direction: row; 
+        justify-content: center;
+    }
+}
+
+@media (max-width: 1024px) {
+    .tools-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 3.5rem;
+    }
+
+    .hero p.tagline {
+        font-size: 1.1rem;
+    }
+
+    h2 {
+        font-size: 2.5rem;
+    }
+
+    .tools-list {
+        grid-template-columns: 1fr;
+        padding: 0;
+    }
+
+    .tool-card h3 {
+        font-size: 1.2rem;
+    }
+    
+    .fun-button, .fun-button.secondary {
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+        width: 100%;
+        max-width: 350px;
+    }
+}

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>[Your Name] — Researcher in [Your Field]</title>
+  <meta name="description" content="Academic portfolio of [Your Name], focusing on research in [Your Specific Topics]." />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --header-height:72px;
+      /* Change: A more sober and academic color palette */
+      --bg-color:#f8f9fa;
+      --text-color:#212529;
+      --accent:#2a3d66; /* Deep Navy Blue */
+      --section-bg:#ffffff;
+      --card-bg:#fdfdfd;
+      --muted:#5c677d;
+      --border-color: #dee2e6;
+    }
+    [data-theme="dark"]{
+      --bg-color:#0f1113;
+      --text-color:#e6eefc;
+      --accent:#8ea9fb; /* Lighter blue for dark mode contrast */
+      --section-bg:#101316;
+      --card-bg:#161a1e;
+      --muted:#9aa4bf;
+      --border-color: #343a40;
+    }
+
+    /* Reset + layout */
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    /* Change: Integrated the new fonts */
+    body{margin:0;padding-top:var(--header-height);font-family:'Inter', 'Helvetica Neue', Arial, sans-serif;background:var(--bg-color);color:var(--text-color);line-height:1.6}
+
+    /* Header */
+    header{position:fixed;inset:0 0 auto 0;height:var(--header-height);display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:rgba(255,255,255,0.85);backdrop-filter:blur(8px);border-bottom: 1px solid var(--border-color);z-index:1000}
+    [data-theme="dark"] header{background:rgba(16,19,22,0.8); border-bottom: 1px solid var(--border-color);}
+    a.logo{font-family: 'Lora', serif; font-weight:700;text-decoration:none;color:var(--text-color);font-size:1.1rem}
+    nav{display:flex;gap:1.5rem;align-items:center}
+    nav a{color:var(--text-color);text-decoration:none;font-weight:600;font-size:0.95rem;opacity:0.9}
+    nav a:hover{color:var(--accent); opacity:1;}
+
+    .theme-btn{background:none;border:0;padding:6px;cursor:pointer;font-size:1.05rem}
+
+    /* Hero */
+    /* Change: Removed gradient for a cleaner, more professional look. */
+    .hero{min-height:calc(80vh - var(--header-height));display:flex;align-items:center;justify-content:center;padding:2rem;text-align:center;background:var(--bg-color);}
+    .hero .inner{max-width:820px;padding:2rem}
+    /* Change: Using serif font for main heading. Adjusted sizing. */
+    .hero h1{font-family:'Lora', serif;font-size:2.8rem;line-height:1.1;margin:0 0 0.8rem;color:var(--text-color);}
+    .hero p{font-size:1.1rem;margin:0 0 1.8rem;color:var(--muted);max-width:680px; margin-left:auto; margin-right:auto;}
+    /* Change: A more subtle, academic-style button ("ghost button") */
+    .btn{display:inline-block;background:transparent;color:var(--accent);padding:0.75rem 1.5rem;border-radius:6px;font-weight:700;text-decoration:none;border: 2px solid var(--accent); transition: all .2s ease;}
+    .btn:hover{background:var(--accent); color:white; transform:translateY(-2px);}
+
+    /* Sections */
+    section{padding:5rem 10%; border-bottom: 1px solid var(--border-color);}
+    section:last-of-type{border-bottom:none;}
+    /* Change: Using serif font for section headings */
+    h2{font-family:'Lora', serif;font-size:2rem;margin:0 0 1.5rem; text-align:center;}
+    p.lead{color:var(--muted);max-width:720px; text-align:center; margin: -1rem auto 2.5rem auto; font-size: 1.05rem;}
+
+    /* Portfolio grid -> renamed for Publications */
+    .publication-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.8rem}
+    .publication-card{background:var(--card-bg);border: 1px solid var(--border-color); border-radius:8px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s ease,box-shadow .2s ease}
+    .publication-card:hover{transform:translateY(-5px);box-shadow:0 12px 28px rgba(42,61,102,0.08)}
+    [data-theme="dark"] .publication-card:hover {box-shadow:0 12px 28px rgba(0,0,0,0.2);}
+    .publication-card a {text-decoration: none; color: inherit; display: flex; flex-direction: column; height: 100%;}
+    .publication-thumb{height:190px;display:block;background-size:cover;background-position:center; border-bottom: 1px solid var(--border-color);}
+    .publication-content{padding:1.2rem; flex-grow: 1;}
+    .publication-title{margin:0;font-weight:700; font-family: 'Lora', serif; font-size: 1.15rem;}
+    .publication-meta{font-size: .85rem; color: var(--muted); margin-top: .5rem; display: block;}
+    .publication-desc{margin-top:0.6rem;color:var(--text-color);font-size:0.95rem; opacity: 0.9;}
+
+    /* Expertise */
+    .expertise-list{display:flex;flex-wrap:wrap;gap:.7rem; justify-content: center;}
+    /* Change: More subtle styling for skills */
+    .skill{background:var(--card-bg); border: 1px solid var(--border-color); color:var(--muted);padding:.4rem 1rem;border-radius:6px;font-weight:600;font-size:.9rem}
+
+    /* Endorsements */
+    .testimonial{background:transparent;padding:1.5rem;border: 1px solid var(--border-color); border-radius:8px;max-width:800px;margin:0 auto}
+    blockquote{margin:0;font-style:italic; position:relative; padding-left: 2rem;}
+    blockquote::before {content: '“'; position: absolute; left: 0; top: -0.5rem; font-size: 3rem; color: var(--accent); opacity: 0.5;}
+    blockquote footer {margin-top: 1rem; font-style: normal; font-weight: 600; color: var(--text-color);}
+
+    /* Contact */
+    .contact form{max-width:680px;margin:0 auto;display:grid;gap:1rem}
+    input,textarea{padding:0.9rem;border-radius:6px;border:1px solid var(--border-color);font-size:1rem; background: var(--section-bg); color: var(--text-color);}
+    input:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(42,61,102,0.1)}
+    .submit{background:var(--accent);color:white;padding:0.9rem;border-radius:6px;border:0;font-weight:700;cursor:pointer; font-size: 1rem;}
+
+    /* Footer */
+    footer{padding:3rem 10%;text-align:center;color:var(--muted);font-size:.9rem; background: var(--section-bg); border-top: 1px solid var(--border-color);}
+
+    /* Responsive tweaks */
+    @media (max-width:800px){
+      .hero h1{font-size:2.2rem}
+      header{padding:0 4%}
+      section{padding:4rem 6%}
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a class="logo" href="#">[Your Name]</a>
+    <nav aria-label="Primary navigation">
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#expertise">Expertise</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:.6rem">
+      <button class="theme-btn" id="themeToggle" aria-label="Toggle color theme">🌓</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="hero" aria-labelledby="hero-heading">
+      <div class="inner">
+        <h1 id="hero-heading">[Your Name]</h1>
+        <p class="lead">PhD Candidate at [Your University], specializing in [Your Field]. My research focuses on [1-2 sentence summary of your research interest].</p>
+        <a class="btn" href="#research" style="margin-right: 0.5rem;">View Research</a>
+        <a class="btn" href="/path-to-your-cv.pdf" target="_blank">Download CV</a>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <h2>About Me</h2>
+      <p class="lead" style="text-align:left; max-width: 800px;">I am a researcher and PhD candidate in the [Department Name] at [Your University], advised by Dr. [Advisor's Name]. My dissertation, "[Your Dissertation Title]," investigates [brief summary of dissertation]. I am passionate about using [key method/theory] to understand [broader impact/goal]. Previously, I earned my [MA/MS/BA/BS] in [Previous Field] from [Previous University].</p>
+    </section>
+
+    <section id="research" class="research">
+      <h2>Research & Publications</h2>
+      <p class="lead">A selection of my published work, conference presentations, and ongoing research projects.</p>
+      <div class="publication-grid">
+
+        <article class="publication-card">
+          <a href="#" aria-label="Read paper: [Paper Title]">
+            <div class="publication-thumb" style="background-image:url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=1200&q=60')" aria-hidden="true"></div>
+            <div class="publication-content">
+              <h3 class="publication-title">[Paper Title]</h3>
+              <span class="publication-meta">[Journal or Conference Name], [Year]</span>
+              <p class="publication-desc">Brief abstract or key finding from the paper. This demonstrates the core contribution of the work in one or two sentences.</p>
+            </div>
+          </a>
+        </article>
+
+        <article class="publication-card">
+          <a href="#" aria-label="Read paper: [Another Paper Title]">
+            <div class="publication-thumb" style="background-image:url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=60')" aria-hidden="true"></div>
+            <div class="publication-content">
+                <h3 class="publication-title">[Another Paper Title]</h3>
+                <span class="publication-meta">[Journal or Conference Name], [Year]</span>
+                <p class="publication-desc">Brief abstract or key finding from the paper. This demonstrates the core contribution of the work in one or two sentences.</p>
+            </div>
+          </a>
+        </article>
+
+        <article class="publication-card">
+            <a href="#" aria-label="View project: [Project or Chapter Title]">
+                <div class="publication-thumb" style="background-image:url('https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1200&q=60')" aria-hidden="true"></div>
+                <div class="publication-content">
+                    <h3 class="publication-title">[Project or Chapter Title]</h3>
+                    <span class="publication-meta">Work in Progress</span>
+                    <p class="publication-desc">A short description of an ongoing research project, a book chapter, or a significant conference presentation.</p>
+                </div>
+            </a>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="expertise" class="expertise">
+      <h2>Areas of Expertise</h2>
+      <div class="expertise-list">
+        <span class="skill">Qualitative Research</span>
+        <span class="skill">Statistical Analysis (R/Stata)</span>
+        <span class="skill">Machine Learning</span>
+        <span class="skill">[A Specific Theory]</span>
+        <span class="skill">Archival Research</span>
+        <span class="skill">Grant Writing</span>
+        <span class="skill">Public Speaking</span>
+      </div>
+    </section>
+
+    <section id="endorsements" class="endorsements">
+      <h2>Endorsements</h2>
+      <div class="testimonial">
+        <blockquote>
+            “[Your Name] is a rigorous and insightful researcher. Their work on [topic] brings much-needed clarity and is a significant contribution to the field.”
+            <footer>— Dr. [Supervisor's Name], [Title], [University]</footer>
+        </blockquote>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2>Get in Touch</h2>
+      <p class="lead">I welcome inquiries regarding collaborations, speaking engagements, or questions about my research.</p>
+      <form action="mailto:youremail@example.com" method="POST" enctype="text/plain">
+        <input name="name" type="text" placeholder="Your name" required />
+        <input name="email" type="email" placeholder="Your email" required />
+        <textarea name="message" rows="6" placeholder="Your message..." required></textarea>
+        <button class="submit" type="submit">Send Message</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <small>© <span id="year"></span> [Your Name] • [Your Field] Researcher • <a href="/path-to-your-cv.pdf" style="color:var(--accent);text-decoration:none; font-weight:600;">Download CV</a></small>
+  </footer>
+
+  <script>
+    // set year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // theme toggle (persisted)
+    const toggle = document.getElementById('themeToggle');
+    const root = document.documentElement;
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark') root.setAttribute('data-theme','dark');
+
+    toggle.addEventListener('click', () => {
+      if (root.getAttribute('data-theme') === 'dark'){
+        root.removeAttribute('data-theme');
+        localStorage.removeItem('theme');
+      } else {
+        root.setAttribute('data-theme','dark');
+        localStorage.setItem('theme','dark');
+      }
+    });
+
+    // NOTE: The clickable card functionality has been removed in favor of a standard <a> tag
+    // wrapping the card content. This is a more robust and accessible pattern.
+    // The original JS for this is no longer needed.
+  </script>
+</body>
+</html>
